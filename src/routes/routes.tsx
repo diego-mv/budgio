@@ -19,6 +19,42 @@ const ROUTES: RouteList[] = [
 		name: 'home',
 		path: '/',
 		type: 'public'
+	},
+	{
+		Component: <Pages.CreditCard.MyCreditCards />,
+		name: 'credit-cards',
+		path: '/credit-cards',
+		type: 'private'
+	},
+	{
+		Component: <Pages.CreditCard.CreateCreditCard />,
+		name: 'create-credit-cards',
+		path: '/credit-cards/create',
+		type: 'private'
+	},
+	{
+		Component: <Pages.CheckingAccount.MyCheckingAccounts />,
+		name: 'checking-accounts',
+		path: '/checking-accounts',
+		type: 'private'
+	},
+	{
+		Component: <Pages.CheckingAccount.CreateCheckingAccount />,
+		name: 'create-checking-accounts',
+		path: '/checking-checking/create',
+		type: 'private'
+	},
+	{
+		Component: <Pages.Expense.MyExpenses />,
+		name: 'expenses',
+		path: '/expenses',
+		type: 'private'
+	},
+	{
+		Component: <Pages.Expense.CreateExpense />,
+		name: 'create-expenses',
+		path: '/expenses/create',
+		type: 'private'
 	}
 ]
 
