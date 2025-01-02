@@ -1,0 +1,24 @@
+.sider div[class="ant-layout-sider-children"] {
+    position: relative;
+    
+}
+
+.sider div[class="ant-layout-sider-trigger"]{
+    background: #2b7a78;
+}
+
+.sider_header{
+    min-height: 100px;
+}
+
+.sider_header__img {
+    width: 100%;
+    padding: 2rem;
+}
+
+.sider_header__img_collapsed {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    padding: 1rem 0;
+}

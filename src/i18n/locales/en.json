@@ -1,0 +1,23 @@
+{
+    "general": {
+        "language": "Language",
+        "spanish": "Spanish",
+        "english": "English",
+        "logout": "Log out",
+        "login": "Log in",
+        "home": "Home",
+        "dashboard": "Dashboard",
+        "creditCards": "Credit Cards",
+        "checkingAccounts": "Checking Accounts",
+        "expenses": "Expenses"
+    },
+    "login": {
+        "title": "Log in",
+        "message": "Enter your account to access all the features of the application",
+        "canAccesWith": "You can log in with:",
+        "button": "Log in"
+    },
+    "footer": {
+        "footerText": "Test project. Name and email are saved upon logging in"
+    }
+}

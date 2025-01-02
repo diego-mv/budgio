@@ -1,0 +1,29 @@
+.menu_logout {
+	min-width: 400px;
+	float: inline-end;
+	background: #17252a !important;
+	background-color: #17252a;
+}
+
+.menu_logout > li > span {
+	font-weight: 700;
+}
+
+.username_item {
+	color: #fff !important;
+	cursor: default !important;
+}
+
+.username_item > span {
+	color: #fff !important;
+}
+
+.language_item {
+	color: #fff !important;
+	cursor: default !important;
+}
+
+.language_item > div > span {
+	color: #fff !important;
+	font-weight: 700;
+}

@@ -1,0 +1,24 @@
+{
+    "general": {
+        "language": "Idioma",
+        "spanish": "Español",
+        "english": "Inglés",
+        "logout": "Cerrar sesión",
+        "login": "Iniciar sesión",
+        "home": "Inicio",
+        "dashboard": "Tablero",
+        "creditCards": "Tarjetas de crédito",
+        "checkingAccounts": "Cuentas corrientes",
+        "expenses": "Gastos"
+    },
+    "login":{
+        "title": "Iniciar sesión",
+        "message": "Entra en tu cuenta para acceder a todas las funcionalidades de la aplicación",
+        "canAccesWith": "Puedes acceder con:",
+        "button": "Iniciar sesión"
+    }
+    ,
+    "footer": {
+        "footerText": "Proyecto de prueba. Al iniciar sesion se guarda nombre y correo electronico"
+    }
+}
