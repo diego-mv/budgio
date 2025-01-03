@@ -1,10 +1,22 @@
-import React, { useState } from 'react'
-import './index.component.css'
+import React, { useEffect, useState } from 'react'
+import './index.css'
 import { CarouselProps } from './types'
 
-const Carousel: React.FC<CarouselProps> = ({ children, loop = true }) => {
+const Carousel: React.FC<CarouselProps> = ({
+	children,
+	loop = true,
+	visibleSlides,
+	onActiveChange,
+	loading
+}) => {
 	const [currentIndex, setCurrentIndex] = useState(0)
 	const totalSlides = React.Children.count(children)
+
+	useEffect(() => {
+		if (onActiveChange) {
+			onActiveChange(currentIndex)
+		}
+	}, [currentIndex, onActiveChange])
 
 	const goToNext = () => {
 		setCurrentIndex((prev) =>
@@ -19,24 +31,56 @@ const Carousel: React.FC<CarouselProps> = ({ children, loop = true }) => {
 	}
 
 	const getClassName = (index: number) => {
-		if (index === currentIndex) return 'slide active'
-		if (index === (currentIndex - 1 + totalSlides) % totalSlides)
-			return 'slide prev'
-		if (index === (currentIndex + 1) % totalSlides) return 'slide next'
-		return 'slide'
+		const half = Math.floor(visibleSlides / 2)
+
+		let className = 'slide'
+		if (index === currentIndex) {
+			className += ' active'
+		} else if (index === (currentIndex - 1 + totalSlides) % totalSlides) {
+			className += ' prev'
+		} else if (index === (currentIndex + 1) % totalSlides) {
+			className += ' next'
+		}
+
+		if (visibleSlides > 3) {
+			if (index === (currentIndex - half - 1 + totalSlides) % totalSlides)
+				className += ' prev-2'
+			if (index === (currentIndex + half + 1) % totalSlides)
+				className += ' next-2'
+		}
+
+		return className
+	}
+
+	const handleClick = (index: number) => {
+		if (loading) return
+		setCurrentIndex(index)
 	}
 
 	return (
 		<div className="carousel-container">
-			<button className="carousel-button prev" onClick={goToPrev}>
+			<button
+				disabled={loading}
+				className="carousel-button prev"
+				onClick={goToPrev}
+			>
 				&#8249;
 			</button>
 			<div className="carousel-track">
 				{React.Children.map(children, (child, index) => (
-					<div className={getClassName(index)}>{child}</div>
+					<div
+						className={getClassName(index)}
+						onClick={() => handleClick(index)}
+					>
+						{child}
+					</div>
 				))}
 			</div>
-			<button className="carousel-button next" onClick={goToNext}>
+			<button
+				disabled={loading}
+				className="carousel-button next"
+				onClick={goToNext}
+			>
 				&#8250;
 			</button>
 		</div>

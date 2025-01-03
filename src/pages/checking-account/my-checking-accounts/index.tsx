@@ -1,15 +1,17 @@
+import { Card } from 'antd'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import Carousel from '../../../components/carousel'
 import useCheckingAccount from '../../../hook/useCheckingAccount'
 import { CheckingAccountDto } from '../../../models/checking-account.dto'
-import useEmblaCarousel from 'embla-carousel-react'
-import Carousel from '../../../components/carousel'
-import { Card } from 'antd'
+import CreditCard from '../../../components/credit-card'
+import { useAuthStore } from '../../../stores/auth'
 
 const MyCheckingAccounts = () => {
-	const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
+	const { user } = useAuthStore()
 	const { t } = useTranslation()
 	const { getByUser } = useCheckingAccount()
+	const [loading, setLoading] = useState(false)
 	const [checkingAccounts, setCheckiingAccounts] = useState<
 		CheckingAccountDto[]
 	>([])
@@ -27,17 +29,20 @@ const MyCheckingAccounts = () => {
 		<div>
 			<h1 className="text-2xl font-bold">{t('checkingAccount.title')}</h1>
 
-			<Carousel loop>
+			<Carousel
+				loop
+				visibleSlides={5}
+				onActiveChange={(index) => {
+					console.log(index)
+				}}
+				loading={loading}
+			>
 				{checkingAccounts.map((checkingAccount, index) => (
-					<Card
-						key={checkingAccount.id}
-						className={`min-w-80 min-h-52`}
-						style={{ background: `#${checkingAccount.color}` }}
-					>
-						<h1>{index}</h1>
-						<h2>{checkingAccount.name}</h2>
-						<p>{checkingAccount.balance}</p>
-					</Card>
+					<CreditCard
+						name={user?.name || 'User'}
+						bank={checkingAccount.name}
+						color={checkingAccount.color}
+					/>
 				))}
 			</Carousel>
 		</div>
