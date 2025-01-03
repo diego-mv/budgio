@@ -15,7 +15,14 @@ const ModalCreateExpense: React.FC<ModalCreateExpenseProps> = ({
 	}
 
 	return (
-		<Modal open={isOpen} footer={null} onClose={onClose} onCancel={onClose}>
+		<Modal
+			getContainer={false}
+			forceRender
+			open={isOpen}
+			footer={null}
+			onClose={onClose}
+			onCancel={onClose}
+		>
 			<h1 className="mb-6 text-2xl font-bold">{t('expenses.addExpense')}</h1>
 			<CreateExpense onClose={handleClose} />
 		</Modal>

@@ -7,12 +7,14 @@ import { useAlertContext } from '../../../contexts/alert/AlertContext'
 import useExpenseClient from '../../../hook/useExpenseClient'
 import { CreateExpenseDto } from '../../../models/expense.dto'
 import { CreateExpenseForm, CreateExpenseProps } from './types'
+import { useState } from 'react'
 
 const CreateExpense: React.FC<CreateExpenseProps> = ({ onClose }) => {
 	const { t } = useTranslation()
 	const { create } = useExpenseClient()
 	const { showSuccess, showError } = useAlertContext()
-	const [form] = Form.useForm()
+	const [form] = Form.useForm<CreateExpenseForm>()
+	const [isInstallmentDisabled, setInstallmentDisabled] = useState(false)
 
 	const onFinish = async (formData: CreateExpenseForm) => {
 		try {
@@ -37,17 +39,18 @@ const CreateExpense: React.FC<CreateExpenseProps> = ({ onClose }) => {
 	const handleChangeForm = (_: any, values: CreateExpenseForm) => {
 		if (values.installments <= 1) {
 			form.setFieldsValue({ installmentAmount: values.amount })
+			setInstallmentDisabled(true)
 		} else {
 			form.setFieldsValue(values)
+			setInstallmentDisabled(false)
 		}
 	}
 
 	return (
 		<Form
 			form={form}
-			name="login-form"
+			name="create-expense-form"
 			onFinish={onFinish}
-			initialValues={{ remember: false }}
 			autoComplete="off"
 			layout="vertical"
 			onValuesChange={handleChangeForm}
@@ -110,8 +113,8 @@ const CreateExpense: React.FC<CreateExpenseProps> = ({ onClose }) => {
 				]}
 			>
 				<CustomInput
-					readOnly={form.getFieldValue('installments') <= 1}
-					disabled={form.getFieldValue('installments') <= 1}
+					readOnly={isInstallmentDisabled}
+					disabled={isInstallmentDisabled}
 					type="number"
 					placeholder={t('expenses.installmentAmount')}
 				/>
