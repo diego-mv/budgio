@@ -8,7 +8,26 @@ export class ExpenseDto {
 	user: UserDto
 	createdAt: Date
 	updatedAt: Date | null
+	paid: boolean
+	installments: number
+	amount: number
 }
 
-export class CreateExpenseDto {}
-export class UpdateExpenseDto {}
+export class CreateExpenseDto {
+	installmentAmount: number
+	name: string
+	dueDate: Date
+	paid: boolean
+	amount: number
+	installments: number
+}
+
+export class UpdateExpenseDto {
+	id: string
+	installmentAmount: number
+	name: string
+	dueDate: Date
+	paid: boolean
+	amount: number
+	installments: number
+}

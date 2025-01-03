@@ -1,6 +1,6 @@
 import { Button } from 'antd'
 import { CONSTANTS } from '../../../../constants'
-import GithubLogo from '../../../../assets/logos/github.svg'
+import GithubLogo from '../../../../assets/logos/github_white.svg'
 import GoogleLogo from '../../../../assets/logos/google.svg'
 
 const SocialNetworkLogin = () => {
@@ -15,14 +15,16 @@ const SocialNetworkLogin = () => {
 	return (
 		<div className="flex justify-center">
 			<Button
-				className="mr-2 shadow-lg border-gray-200 p-7"
+				type="text"
+				className="mr-2 shadow-lg border-gray-200 p-7 font-semibold"
 				onClick={loginWithGithub}
 				icon={<img width={20} src={GithubLogo} />}
 			>
 				GitHub
 			</Button>
 			<Button
-				className="shadow-lg border-gray-200 p-7"
+				type="text"
+				className="shadow-lg border-gray-200 p-7 font-semibold"
 				onClick={loginWithGoogle}
 				icon={<img width={20} src={GoogleLogo} />}
 			>

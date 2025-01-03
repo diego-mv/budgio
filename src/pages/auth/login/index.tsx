@@ -40,9 +40,7 @@ const Login = () => {
 					>
 						<div className="w-full px-32">
 							<h1 className="text-2xl font-bold mb-4">{t('login.title')}</h1>
-							<p className="text-gray-800 font-semibold mb-4">
-								{t('login.message')}
-							</p>
+							<p className="font-semibold mb-4">{t('login.message')}</p>
 							<FormLogin />
 							<div className="flex items-center justify-center my-4">
 								<div className="flex-1 border-t border-gray-300"></div>

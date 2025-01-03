@@ -50,7 +50,7 @@ const Sidebar = () => {
 			collapsed={collapsed}
 			onCollapse={(value) => setCollapsed(value)}
 			className={Styles.sider}
-			style={{ background: '#17252a' }}
+			style={{ background: '#010409' }}
 		>
 			<div className={Styles.sider_header}>
 				<img
@@ -67,7 +67,7 @@ const Sidebar = () => {
 				theme="dark"
 				mode="inline"
 				items={items}
-				style={{ background: '#17252a' }}
+				style={{ background: '#010409' }}
 			/>
 		</Sider>
 	)

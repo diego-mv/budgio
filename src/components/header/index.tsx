@@ -78,7 +78,7 @@ const Header: React.FC<HeaderProps> = () => {
 	}
 
 	return (
-		<Layout.Header style={{ padding: 0, background: '#17252a' }}>
+		<Layout.Header style={{ padding: 0, background: '#010409' }}>
 			<Menu
 				defaultActiveFirst={false}
 				selectable={false}

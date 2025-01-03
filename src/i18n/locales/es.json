@@ -9,16 +9,34 @@
         "dashboard": "Tablero",
         "creditCards": "Tarjetas de crédito",
         "checkingAccounts": "Cuentas corrientes",
-        "expenses": "Gastos"
+        "expenses": "Gastos",
+        "name": "Nombre",
+        "requiredField": "Campo requerido",
+        "save": "Guardar"
     },
     "login":{
         "title": "Iniciar sesión",
         "message": "Entra en tu cuenta para acceder a todas las funcionalidades de la aplicación",
         "canAccesWith": "Puedes acceder con:",
         "button": "Iniciar sesión"
-    }
-    ,
+    },
+    "expenses":{
+        "title": "Gastos",
+        "addExpense": "Añadir gasto",
+        "dueDate": "Fecha de vencimiento",
+        "amount": "Monto", 
+        "installmentAmount": "Monto de la cuota",
+        "installments": "Cuotas", 
+        "paid": "Pagado",
+        "expenseCreated": "Gasto creado con éxito",
+        "deleteMultipleExpense": "Eliminar seleccionados",
+        "deletedExpense": "Gastos eliminados con éxito"
+    },
     "footer": {
         "footerText": "Proyecto de prueba. Al iniciar sesion se guarda nombre y correo electronico"
+    },
+    "errors": {
+        "onCreate": "Ha ocurrido un error al crear el registro",
+        "errorDelete": "Ha ocurrido un error al eliminar el registro"
     }
 }

@@ -2,50 +2,49 @@ import { CONSTANTS } from '../../constants'
 import { Utils } from '../../utils'
 
 export interface ApiClient {
-	get<T>(url: string, params?: object): Promise<T>
-	post<T>(url: string, data: object): Promise<T>
-	put<T>(url: string, data: object): Promise<T>
-	delete<T>(url: string): Promise<T>
+	get<T>(url: string, token: string, params?: object): Promise<T>
+	post<T>(url: string, token: string, data: object): Promise<T>
+	put<T>(url: string, token: string, data: object): Promise<T>
+	delete<T>(url: string, token: string): Promise<T>
 }
 
 const apiClient: ApiClient = {
-	get: async <T>(url: string, params: object) => {
+	get: async <T>(url: string, token: string, params?: object) => {
 		const queryString = params
 			? `?${new URLSearchParams(params as Record<string, string>).toString()}`
 			: ''
 		const response = await fetch(`${CONSTANTS.API_URL}${url}${queryString}`, {
 			method: 'GET',
-			headers: getHeaders()
+			headers: getHeaders(token)
 		})
 		return handleResponse<T>(response)
 	},
-	post: async <T>(url: string, data: any) => {
+	post: async <T>(url: string, token: string, data: any) => {
 		const response = await fetch(`${CONSTANTS.API_URL}${url}`, {
 			method: 'POST',
-			headers: getHeaders(),
+			headers: getHeaders(token),
 			body: JSON.stringify(data)
 		})
 		return handleResponse<T>(response)
 	},
-	put: async <T>(url: string, data: any) => {
+	put: async <T>(url: string, token: string, data: any) => {
 		const response = await fetch(`${CONSTANTS.API_URL}${url}`, {
 			method: 'PUT',
-			headers: getHeaders(),
+			headers: getHeaders(token),
 			body: JSON.stringify(data)
 		})
 		return handleResponse<T>(response)
 	},
-	delete: async <T>(url: string) => {
+	delete: async <T>(url: string, token: string) => {
 		const response = await fetch(`${CONSTANTS.API_URL}${url}`, {
 			method: 'DELETE',
-			headers: getHeaders()
+			headers: getHeaders(token)
 		})
 		return handleResponse<T>(response)
 	}
 }
 
-const getHeaders = (): HeadersInit => {
-	const token = Utils.SessionStorage.getToken()
+const getHeaders = (token: string): HeadersInit => {
 	return {
 		'Content-Type': 'application/json',
 		...(token ? { Authorization: `Bearer ${token}` } : {})

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 
 const FormLogin = () => {
 	const { t } = useTranslation()
+
 	const onFinish = (values: FormLoginData) => {
 		console.log('Datos del formulario:', values)
 	}
