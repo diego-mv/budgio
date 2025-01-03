@@ -32,6 +32,9 @@
         "deleteMultipleExpense": "Eliminar seleccionados",
         "deletedExpense": "Gastos eliminados con éxito"
     },
+    "checkingAccount": {
+        "title": "Cuentas Corrientes"
+    },
     "footer": {
         "footerText": "Proyecto de prueba. Al iniciar sesion se guarda nombre y correo electronico"
     },
