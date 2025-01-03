@@ -27,6 +27,7 @@ const CreateExpense: React.FC<CreateExpenseProps> = ({ onClose }) => {
 
 			await create(createExpense)
 			showSuccess(t('expenses.expenseCreated'))
+			form.resetFields()
 			onClose()
 		} catch (error) {
 			showError(t('errors.onCreate'))
