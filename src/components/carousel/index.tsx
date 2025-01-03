@@ -2,21 +2,9 @@ import React, { useState } from 'react'
 import './index.component.css'
 import { CarouselProps } from './types'
 
-const Carousel: React.FC<CarouselProps> = ({ children, loop = false }) => {
+const Carousel: React.FC<CarouselProps> = ({ children, loop = true }) => {
 	const [currentIndex, setCurrentIndex] = useState(0)
-	const totalSlides = children.length
-
-	const getVisibleSlides = () => {
-		if (!loop) {
-			return children
-		}
-
-		return [
-			children[(currentIndex - 1 + totalSlides) % totalSlides],
-			children[currentIndex],
-			children[(currentIndex + 1) % totalSlides]
-		]
-	}
+	const totalSlides = React.Children.count(children)
 
 	const goToNext = () => {
 		setCurrentIndex((prev) =>
@@ -30,30 +18,25 @@ const Carousel: React.FC<CarouselProps> = ({ children, loop = false }) => {
 		)
 	}
 
+	const getClassName = (index: number) => {
+		if (index === currentIndex) return 'slide active'
+		if (index === (currentIndex - 1 + totalSlides) % totalSlides)
+			return 'slide prev'
+		if (index === (currentIndex + 1) % totalSlides) return 'slide next'
+		return 'slide'
+	}
+
 	return (
 		<div className="carousel-container">
-			<button
-				className="carousel-button prev"
-				onClick={goToPrev}
-				disabled={!loop && currentIndex === 0}
-			>
+			<button className="carousel-button prev" onClick={goToPrev}>
 				&#8249;
 			</button>
 			<div className="carousel-track">
-				{getVisibleSlides().map((child, index) => (
-					<div
-						key={index}
-						className={`carousel-slide ${index === 1 ? 'active' : ''}`}
-					>
-						{child}
-					</div>
+				{React.Children.map(children, (child, index) => (
+					<div className={getClassName(index)}>{child}</div>
 				))}
 			</div>
-			<button
-				className="carousel-button next"
-				onClick={goToNext}
-				disabled={!loop && currentIndex === totalSlides - 1}
-			>
+			<button className="carousel-button next" onClick={goToNext}>
 				&#8250;
 			</button>
 		</div>

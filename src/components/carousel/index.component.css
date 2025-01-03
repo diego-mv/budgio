@@ -1,51 +1,78 @@
 .carousel-container {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .carousel-track {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 100%;
-  }
-  
-  .carousel-slide {
-    position: relative;
-    width: 30%;
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    opacity: 0.6;
-    transform: scale(0.8);
-  }
-  
-  .carousel-slide.active {
-    opacity: 1;
-    transform: scale(1);
-  }
-  
-  .carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    z-index: 3;
-  }
-  
-  .carousel-button.prev {
-    left: 0.5rem;
-  }
-  
-  .carousel-button.next {
-    right: 0.5rem;
-  }
-  
-  
+	position: relative;
+	width: 100%;
+	/* max-width: 800px; */
+	height: 300px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+	background: #f9f9f9;
+	border-radius: 10px;
+}
+
+.carousel-track {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	justify-content: center;
+	align-items: center;
+}
+
+.slide {
+	position: absolute;
+	width: 60%;
+	height: 70%;
+	background: transparent;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0;
+	transform: scale(0.9) translateX(0);
+	transition:
+		transform 0.5s ease,
+		opacity 0.5s ease;
+}
+
+.slide.active {
+	opacity: 1;
+	transform: scale(1.2) translateX(0);
+	z-index: 2;
+}
+
+.slide.prev {
+	opacity: 0.6;
+	transform: scale(0.9) translateX(-90%);
+	z-index: 1;
+}
+
+.slide.next {
+	opacity: 0.6;
+	transform: scale(0.9) translateX(90%);
+	z-index: 1;
+}
+
+/* Botones de navegación */
+.carousel-button {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+	border: none;
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+	z-index: 3;
+	font-size: 1.5rem;
+}
+
+.carousel-button.prev {
+	left: 10px;
+}
+
+.carousel-button.next {
+	right: 10px;
+}
