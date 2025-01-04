@@ -12,7 +12,10 @@
         "expenses": "Gastos",
         "name": "Nombre",
         "requiredField": "Campo requerido",
-        "save": "Guardar"
+        "save": "Guardar",
+        "balance": "Balance",
+        "description": "Descripción",
+        "optional": "Opcional"
     },
     "login":{
         "title": "Iniciar sesión",
@@ -33,13 +36,18 @@
         "deletedExpense": "Gastos eliminados con éxito"
     },
     "checkingAccount": {
-        "title": "Cuentas Corrientes"
+        "title": "Cuentas Corrientes",
+        "updatedBalance": "Balance actualizado con éxito",
+        "updateBalanceTitle": "Actualizar balance de la tarjeta"
+
     },
     "footer": {
         "footerText": "Proyecto de prueba. Al iniciar sesion se guarda nombre y correo electronico"
     },
     "errors": {
         "onCreate": "Ha ocurrido un error al crear el registro",
-        "errorDelete": "Ha ocurrido un error al eliminar el registro"
+        "onUpdate": "Ha ocurrido un error al actualizar el registro",
+        "errorDelete": "Ha ocurrido un error al eliminar el registro",
+        "errorInteger": "El campo debe ser un número entero"
     }
 }

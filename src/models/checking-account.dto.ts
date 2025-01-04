@@ -10,5 +10,15 @@ export class CheckingAccountDto {
 	updatedAt: Date | null
 }
 
-export class CreateCheckingAccountDto {}
-export class UpdateCheckingAccountDto {}
+export class CreateCheckingAccountDto {
+	name: string
+	balance: number
+	color: string
+}
+export class UpdateCheckingAccountDto {
+	id: string
+	name: string
+	balance: number
+	color: string
+	descriptionBalance?: string | null
+}

@@ -33,16 +33,17 @@ const CreditCard: React.FC<CreditCardProps> = ({ name, bank, color }) => {
 	}
 
 	return (
-		<div
-			className="credit_card_container"
-			style={{
-				...getRandPattern(),
-				backgroundColor: `${hexColor}`
-			}}
-		>
+		<div className="credit_card_container" style={getRandPattern()}>
 			<h1 className="bank_name">{bank}</h1>
 			<img className="chip_illust" src={Chip} alt="Chip" />
-			<p className="card_number">1234 5678 9012 3456</p>
+			<p className="card_number">
+				{[...Array(16)].map((_, index) => (
+					<span
+						key={index}
+						className={`blurred_block ${(index + 1) % 4 === 0 ? 'mr-3' : ''}`}
+					></span>
+				))}
+			</p>
 			<p className="username">{name}</p>
 			<span className="type_card">Type</span>
 		</div>

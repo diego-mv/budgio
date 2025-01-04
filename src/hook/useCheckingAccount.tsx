@@ -71,7 +71,32 @@ const useCheckingAccount = () => {
 		}
 	}
 
-	return { getByUser, create, update, deleteCheckingAccount, deleteMultiple }
+	const updateBalance = async (
+		id: string,
+		balance: number,
+		description?: string
+	) => {
+		try {
+			const response = await apiClient.put<CheckingAccountDto>(
+				`${baseUrl}/update-balance/${id}`,
+				token,
+				{ balance, description }
+			)
+			return response
+		} catch (error) {
+			console.error('Client: Error on update balance checking account', error)
+			throw error
+		}
+	}
+
+	return {
+		getByUser,
+		create,
+		update,
+		deleteCheckingAccount,
+		deleteMultiple,
+		updateBalance
+	}
 }
 
 export default useCheckingAccount
