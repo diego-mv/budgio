@@ -6,3 +6,8 @@ export interface UpdateCheckingAccountProps {
 	open: boolean
 	onClose: () => void
 }
+
+export interface UpdateCheckingAccountForm {
+	name: string
+	color: string
+}

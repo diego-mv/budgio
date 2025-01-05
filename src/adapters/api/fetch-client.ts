@@ -5,7 +5,7 @@ export interface ApiClient {
 	get<T>(url: string, token: string, params?: object): Promise<T>
 	post<T>(url: string, token: string, data: object): Promise<T>
 	put<T>(url: string, token: string, data: object): Promise<T>
-	delete<T>(url: string, token: string): Promise<T>
+	delete(url: string, token: string): Promise<void>
 }
 
 const apiClient: ApiClient = {
@@ -35,12 +35,11 @@ const apiClient: ApiClient = {
 		})
 		return handleResponse<T>(response)
 	},
-	delete: async <T>(url: string, token: string) => {
+	delete: async (url: string, token: string): Promise<void> => {
 		const response = await fetch(`${CONSTANTS.API_URL}${url}`, {
 			method: 'DELETE',
 			headers: getHeaders(token)
 		})
-		return handleResponse<T>(response)
 	}
 }
 

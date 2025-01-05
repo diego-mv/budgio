@@ -4,3 +4,9 @@ export interface PaginatedData<T> {
 	pageSize: number
 	total: number
 }
+
+export interface LineChartData {
+	name: string
+	value: number
+	data?: any
+}

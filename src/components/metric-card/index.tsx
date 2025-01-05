@@ -5,9 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const MetricCard: React.FC<MetricCardProps> = ({
 	title,
+	subtitle,
 	value,
 	icon,
 	loading,
+	style,
 	money = false,
 	colors = false
 }) => {
@@ -17,7 +19,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
 			: 'text-green-700'
 
 	return (
-		<Card className="shadow-xl border-1 border-gray-100">
+		<Card className="shadow-xl border-1 border-gray-200" style={style}>
 			<Row>
 				{icon && (
 					<Col span={24} className="text-lg font-semibold mb-3">
@@ -28,6 +30,9 @@ const MetricCard: React.FC<MetricCardProps> = ({
 				)}
 				<Col span={24} className="text-sm font-semibold text-gray-600">
 					{title}
+				</Col>
+				<Col span={24} className="text-xs font-semibold text-gray-600 my-1">
+					{subtitle}
 				</Col>
 				<Col
 					span={24}

@@ -18,7 +18,5 @@ export class CreateCheckingAccountDto {
 export class UpdateCheckingAccountDto {
 	id: string
 	name: string
-	balance: number
 	color: string
-	descriptionBalance?: string | null
 }

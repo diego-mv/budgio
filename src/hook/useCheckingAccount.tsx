@@ -6,7 +6,7 @@ import {
 } from '../models/checking-account.dto'
 import { useAuthStore } from '../stores/auth'
 
-const useCheckingAccount = () => {
+const useCheckingAccountClient = () => {
 	const baseUrl = '/checking-account'
 	const { token: accessToken } = useAuthStore()
 	const token = accessToken || ''
@@ -38,9 +38,11 @@ const useCheckingAccount = () => {
 		}
 	}
 
-	const update = async (checkingAccount: UpdateCheckingAccountDto) => {
+	const update = async (
+		checkingAccount: UpdateCheckingAccountDto
+	): Promise<CheckingAccountDto> => {
 		try {
-			const response = await apiClient.put<UpdateCheckingAccountDto>(
+			const response = await apiClient.put<CheckingAccountDto>(
 				`${baseUrl}`,
 				token,
 				checkingAccount
@@ -99,4 +101,4 @@ const useCheckingAccount = () => {
 	}
 }
 
-export default useCheckingAccount
+export default useCheckingAccountClient

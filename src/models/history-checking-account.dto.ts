@@ -5,3 +5,8 @@ export class HistoryCheckingAccountDto {
 	balance: number
 	date: Date
 }
+
+export class BalanceDifferenceDto {
+	difference: number
+	date?: Date
+}

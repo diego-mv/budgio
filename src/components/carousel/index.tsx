@@ -31,7 +31,10 @@ const Carousel: React.FC<CarouselProps> = ({
 	}
 
 	const getClassName = (index: number) => {
-		const half = Math.floor(visibleSlides / 2)
+		const half =
+			children.length < visibleSlides
+				? Math.floor(children.length / 2)
+				: Math.floor(visibleSlides / 2)
 
 		let className = 'slide'
 		if (index === currentIndex) {
@@ -42,7 +45,7 @@ const Carousel: React.FC<CarouselProps> = ({
 			className += ' next'
 		}
 
-		if (visibleSlides > 3) {
+		if (visibleSlides > 3 && children.length >= visibleSlides) {
 			if (index === (currentIndex - half - 1 + totalSlides) % totalSlides)
 				className += ' prev-2'
 			if (index === (currentIndex + half + 1) % totalSlides)

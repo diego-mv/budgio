@@ -15,7 +15,11 @@
         "save": "Guardar",
         "balance": "Balance",
         "description": "Descripción",
-        "optional": "Opcional"
+        "optional": "Opcional",
+        "date" : "Fecha",
+        "color": "Color",
+        "yes": "Si",
+        "cancel": "Cancelar"
     },
     "login":{
         "title": "Iniciar sesión",
@@ -38,8 +42,21 @@
     "checkingAccount": {
         "title": "Cuentas Corrientes",
         "updatedBalance": "Balance actualizado con éxito",
-        "updateBalanceTitle": "Actualizar balance de la tarjeta"
-
+        "updateBalanceTitle": "Actualizar balance de la tarjeta",
+        "historyTitle": "Historial de saldos",
+        "updateTitle": "Actualizar cuenta corriente",
+        "updateSuccess": "Cuenta actualizada con éxito",
+        "updateCard": "Actualizar tarjeta",
+        "updateBalance": "Actualizar saldo",
+        "currentBalance": "Balance actual",
+        "lastEntry": "Último ingreso",
+        "lastExpense": "Último gasto",
+        "createTitle": "Crear cuenta corriente",
+        "createSuccess": "Cuenta creada con éxito", 
+        "deleteConfirm": "¿Estás seguro de eliminar la cuenta?",
+        "createCard": "Crear tarjeta", 
+        "emptyTitle": "¡Crea tu primera cuenta corriente!",
+        "emptySubtitle": "Comienza a registrar tus ingresos, gastos y lleva un control completo de tus finanzas."
     },
     "footer": {
         "footerText": "Proyecto de prueba. Al iniciar sesion se guarda nombre y correo electronico"

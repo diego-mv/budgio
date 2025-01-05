@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import CustomButton from '../../../../components/button'
 import CustomInput from '../../../../components/input'
 import { useAlertContext } from '../../../../contexts/alert/AlertContext'
-import useCheckingAccount from '../../../../hook/useCheckingAccount'
+import useCheckingAccountClient from '../../../../hook/useCheckingAccount'
 import { UpdateAmountProps, UpdateBalanceForm } from './types'
 import { useEffect } from 'react'
 
@@ -14,7 +14,7 @@ const UpdateAmountCheckingAccount: React.FC<UpdateAmountProps> = ({
 	open,
 	onClose
 }) => {
-	const { updateBalance } = useCheckingAccount()
+	const { updateBalance } = useCheckingAccountClient()
 	const { showError, showSuccess } = useAlertContext()
 	const { t } = useTranslation()
 	const [form] = Form.useForm<UpdateBalanceForm>()

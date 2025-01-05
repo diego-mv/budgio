@@ -1,41 +1,48 @@
-import {
-	faHandHoldingDollar,
-	faMoneyBillWave,
-	faPenToSquare,
-	faScaleBalanced,
-	faWallet
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Col, Row } from 'antd'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import CustomButton from '../../../components/button'
-import Carousel from '../../../components/carousel'
-import CreditCard from '../../../components/credit-card'
-import MetricCard from '../../../components/metric-card'
-import useCheckingAccount from '../../../hook/useCheckingAccount'
+import { useAlertContext } from '../../../contexts/alert/AlertContext'
+import useCheckingAccountClient from '../../../hook/useCheckingAccount'
+import useModal from '../../../hook/useModal'
 import { CheckingAccountDto } from '../../../models/checking-account.dto'
-import { useAuthStore } from '../../../stores/auth'
+import ActionsCheckingAccount from '../components/actions-checking-account'
+import CarouselCheckingAccounts from '../components/carousel-checking-accounts'
+import DetailsCheckingAccount from '../components/details-checking-account'
+import EmptyCheckingAccounts from '../components/empty-checking-accounts'
+import ModalCreateCheckingAccount from '../components/modal-create'
 import UpdateAmountCheckingAccount from '../components/update-amount'
 import UpdateCheckingAccount from '../components/update-checking-account'
 
 const MyCheckingAccounts = () => {
-	const { user } = useAuthStore()
 	const { t } = useTranslation()
-	const { getByUser } = useCheckingAccount()
+	const { showError, showSuccess } = useAlertContext()
+	const { getByUser, deleteCheckingAccount } = useCheckingAccountClient()
 	const [loading, setLoading] = useState(true)
-	const [checkingAccounts, setCheckiingAccounts] = useState<
+	const [checkingAccounts, setCheckingAccounts] = useState<
 		CheckingAccountDto[]
 	>([])
 	const [currentCheckingAccount, setCurrentCheckingAccount] =
 		useState<CheckingAccountDto>({} as CheckingAccountDto)
-	const [openUpdate, setOpenUpdate] = useState(false)
-	const [openUpdateBalance, setOpenUpdateBalance] = useState(false)
+
+	const {
+		isOpen: isOpenCreate,
+		handleOpen: handleOpenCreate,
+		handleClose: handleCloseCreate
+	} = useModal()
+	const {
+		isOpen: isOpenUpdate,
+		handleOpen: handleOpenUpdate,
+		handleClose: handleCloseUpdate
+	} = useModal()
+	const {
+		isOpen: isOpenBalance,
+		handleOpen: handleOpenBalance,
+		handleClose: handleCloseBalance
+	} = useModal()
 
 	const fetchData = async () => {
 		setLoading(true)
 		const response = await getByUser()
-		setCheckiingAccounts(response)
+		setCheckingAccounts(response)
 		setCurrentCheckingAccount(response[0])
 		setLoading(false)
 	}
@@ -48,22 +55,6 @@ const MyCheckingAccounts = () => {
 		setCurrentCheckingAccount(checkingAccounts[index])
 	}
 
-	const handleOpenUpdateCheckingAccount = () => {
-		setOpenUpdate(true)
-	}
-
-	const handleOpenUpdateBalance = () => {
-		setOpenUpdateBalance(true)
-	}
-
-	const onCloseUpdate = () => {
-		setOpenUpdate(false)
-	}
-
-	const onCloseUpdateBalance = () => {
-		setOpenUpdateBalance(false)
-	}
-
 	const onUpdateCheckingAccount = async (
 		checkingAccount: CheckingAccountDto
 	) => {
@@ -73,11 +64,10 @@ const MyCheckingAccounts = () => {
 
 		const copy = [...checkingAccounts]
 		copy[currentIndex].name = checkingAccount.name
-		copy[currentIndex].balance = checkingAccount.balance
 		copy[currentIndex].color = checkingAccount.color
-		copy[currentIndex].updatedAt = checkingAccount.updatedAt
 
-		setCheckiingAccounts(copy)
+		setCheckingAccounts(copy)
+		handleCloseUpdate()
 	}
 
 	const onUpdateBalance = async (amount: number) => {
@@ -87,21 +77,50 @@ const MyCheckingAccounts = () => {
 
 		const copy = [...checkingAccounts]
 		copy[currentIndex].balance = amount
-		setCheckiingAccounts(copy)
-		setOpenUpdateBalance(false)
+		setCheckingAccounts(copy)
+		handleCloseBalance()
+	}
+
+	const onCreateCheckingAccount = async (
+		checkingAccount: CheckingAccountDto
+	) => {
+		setCheckingAccounts([...checkingAccounts, checkingAccount])
+		handleCloseCreate()
+	}
+
+	const handleDeleteCeckingAccount = async () => {
+		try {
+			setLoading(true)
+			await deleteCheckingAccount(currentCheckingAccount.id)
+			showSuccess(t('checkingAccount.deleteSuccess'))
+			fetchData()
+		} catch (error) {
+			showError(error as string)
+		} finally {
+			setLoading(false)
+		}
+	}
+
+	if (loading) {
+		return <div>Loading...</div>
 	}
 
 	return (
 		<div>
+			<ModalCreateCheckingAccount
+				open={isOpenCreate}
+				onClose={handleCloseCreate}
+				onCreate={onCreateCheckingAccount}
+			/>
 			<UpdateCheckingAccount
 				checkingAccount={currentCheckingAccount}
-				open={openUpdate}
-				onClose={onCloseUpdate}
+				open={isOpenUpdate}
+				onClose={handleCloseUpdate}
 				onUpdateCheckingAccount={onUpdateCheckingAccount}
 			/>
 			<UpdateAmountCheckingAccount
-				open={openUpdateBalance}
-				onClose={onCloseUpdateBalance}
+				open={isOpenBalance}
+				onClose={handleCloseBalance}
 				amount={currentCheckingAccount?.balance ?? 0}
 				checkingAccountId={currentCheckingAccount?.id ?? ''}
 				onUpdateAmount={onUpdateBalance}
@@ -109,75 +128,29 @@ const MyCheckingAccounts = () => {
 			<h1 className="text-2xl font-bold">{t('checkingAccount.title')}</h1>
 
 			<div className="mt-4 gap-4">
-				<div className="w-full">
-					<Carousel
-						loop
-						visibleSlides={5}
-						onActiveChange={onChangeCarousel}
-						loading={loading}
-					>
-						{checkingAccounts.map((checkingAccount) => (
-							<CreditCard
-								key={checkingAccount.id}
-								name={user?.name || 'User'}
-								bank={checkingAccount.name}
-								color={checkingAccount.color}
-							/>
-						))}
-					</Carousel>
-				</div>
+				{checkingAccounts.length > 0 ? (
+					<>
+						<CarouselCheckingAccounts
+							checkingAccounts={checkingAccounts}
+							onChangeCarousel={onChangeCarousel}
+						/>
+						<ActionsCheckingAccount
+							handleDeleteCheckingAccount={handleDeleteCeckingAccount}
+							handleOpenCreate={handleOpenCreate}
+							handleOpenUpdateBalance={handleOpenBalance}
+							handleOpenUpdateCheckingAccount={handleOpenUpdate}
+						/>
 
-				<div className="w-full flex justify-center">
-					<CustomButton
-						className="rounded-xl font-bold shadow-sm ml-2"
-						size="large"
-						icon={<FontAwesomeIcon icon={faScaleBalanced} />}
-						onClick={handleOpenUpdateBalance}
-					>
-						Actualizar saldo
-					</CustomButton>
-					<CustomButton
-						className="rounded-xl font-bold shadow-sm ml-2"
-						size="large"
-						icon={<FontAwesomeIcon icon={faPenToSquare} />}
-						onClick={handleOpenUpdateCheckingAccount}
-					>
-						Actualizar tarjeta
-					</CustomButton>
-				</div>
-
-				<div className="w-full">
-					<Row gutter={[16, 16]}>
-						<Col xl={8} lg={8} md={8} sm={24} xs={24}>
-							<MetricCard
-								money
-								title="Balance actual"
-								value={currentCheckingAccount?.balance ?? 0}
-								icon={faWallet}
+						<div className="w-full mt-4">
+							<DetailsCheckingAccount
+								checkingAccount={currentCheckingAccount}
 								loading={loading}
 							/>
-						</Col>
-						<Col xl={8} lg={8} md={8} sm={24} xs={24}>
-							<MetricCard
-								money
-								title="Último ingreso"
-								value={0}
-								icon={faMoneyBillWave}
-								loading={true}
-							/>
-						</Col>
-						<Col xl={8} lg={8} md={8} sm={24} xs={24}>
-							<MetricCard
-								money
-								title="Último gasto"
-								value={-110}
-								icon={faHandHoldingDollar}
-								colors
-								loading={true}
-							/>
-						</Col>
-					</Row>
-				</div>
+						</div>
+					</>
+				) : (
+					<EmptyCheckingAccounts onOpenCreate={handleOpenCreate} />
+				)}
 			</div>
 		</div>
 	)
