@@ -33,19 +33,19 @@ const useHistoryCheckingAccountClient = () => {
 		}
 	}
 
-	const getLastEntry = async (
+	const getLastIncome = async (
 		checkingAccountId: string
 	): Promise<BalanceDifferenceDto> => {
 		try {
 			setLoading(true)
 			const response = await apiClient.get<BalanceDifferenceDto>(
-				`${baseUrl}/last-entry/${checkingAccountId}`,
+				`${baseUrl}/last-income/${checkingAccountId}`,
 				token
 			)
 			return response
 		} catch (error) {
 			console.error(
-				'Client: Error on get last entry of checking account',
+				'Client: Error on get last income of checking account',
 				error
 			)
 			throw error
@@ -75,7 +75,12 @@ const useHistoryCheckingAccountClient = () => {
 		}
 	}
 
-	return { getByCheckingAccount, getLastEntry, getLastExpense, loading }
+	return {
+		getByCheckingAccount,
+		getLastIncome,
+		getLastExpense,
+		loading
+	}
 }
 
 export default useHistoryCheckingAccountClient

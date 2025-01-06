@@ -19,9 +19,9 @@ const MetricCardsCheckingAccount: React.FC<MetricCardsCheckingAccountProps> = ({
 	balance,
 	loadingCheckingAccount
 }) => {
-	const { getLastEntry, getLastExpense } = useHistoryCheckingAccountClient()
+	const { getLastIncome, getLastExpense } = useHistoryCheckingAccountClient()
 	const { showError } = useAlertContext()
-	const [lastEntry, setLastEntry] = useState<BalanceDifferenceDto>()
+	const [lastIncome, setLastIncome] = useState<BalanceDifferenceDto>()
 	const [lastExpense, setLastExpense] = useState<BalanceDifferenceDto>()
 	const [loading, setLoading] = useState(true)
 	const { t } = useTranslation()
@@ -30,9 +30,9 @@ const MetricCardsCheckingAccount: React.FC<MetricCardsCheckingAccountProps> = ({
 		if (!checkingAccountId) return
 		try {
 			setLoading(true)
-			const lastEntry = await getLastEntry(checkingAccountId)
+			const lastIncome = await getLastIncome(checkingAccountId)
 			const lastExpense = await getLastExpense(checkingAccountId)
-			setLastEntry(lastEntry)
+			setLastIncome(lastIncome)
 			setLastExpense(lastExpense)
 		} catch (error) {
 			showError(error as string)
@@ -60,13 +60,13 @@ const MetricCardsCheckingAccount: React.FC<MetricCardsCheckingAccountProps> = ({
 			<Col xl={8} lg={8} md={8} sm={24} xs={24}>
 				<MetricCard
 					money
-					title={t('checkingAccount.lastEntry')}
+					title={t('checkingAccount.lastIncome')}
 					subtitle={
-						lastEntry &&
-						lastEntry?.date &&
-						format(lastEntry?.date, 'dd/MM/yyyy')
+						lastIncome &&
+						lastIncome?.date &&
+						format(lastIncome?.date, 'dd/MM/yyyy')
 					}
-					value={lastEntry?.difference ?? 0}
+					value={lastIncome?.difference ?? 0}
 					icon={faMoneyBillWave}
 					colors
 					loading={loadingCheckingAccount || loading}
