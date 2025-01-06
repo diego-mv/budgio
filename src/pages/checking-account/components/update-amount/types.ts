@@ -8,5 +8,6 @@ export interface UpdateAmountProps {
 
 export interface UpdateBalanceForm {
 	amount: number
+	type: 'balance' | 'expense' | 'income'
 	description?: string
 }

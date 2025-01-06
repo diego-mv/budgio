@@ -20,3 +20,9 @@ export class UpdateCheckingAccountDto {
 	name: string
 	color: string
 }
+
+export class UpdateBalanceCheckingAccountDto {
+	amount: number
+	type: 'balance' | 'expense' | 'income'
+	description?: string
+}

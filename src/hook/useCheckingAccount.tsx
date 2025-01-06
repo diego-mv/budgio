@@ -2,6 +2,7 @@ import apiClient from '../adapters/api/fetch-client'
 import {
 	CheckingAccountDto,
 	CreateCheckingAccountDto,
+	UpdateBalanceCheckingAccountDto,
 	UpdateCheckingAccountDto
 } from '../models/checking-account.dto'
 import { useAuthStore } from '../stores/auth'
@@ -75,14 +76,13 @@ const useCheckingAccountClient = () => {
 
 	const updateBalance = async (
 		id: string,
-		balance: number,
-		description?: string
+		updateBalance: UpdateBalanceCheckingAccountDto
 	) => {
 		try {
 			const response = await apiClient.put<CheckingAccountDto>(
 				`${baseUrl}/update-balance/${id}`,
 				token,
-				{ balance, description }
+				updateBalance
 			)
 			return response
 		} catch (error) {

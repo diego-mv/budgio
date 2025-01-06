@@ -33,7 +33,10 @@ const CreditCard: React.FC<CreditCardProps> = ({ name, bank, color }) => {
 	}
 
 	return (
-		<div className="credit_card_container" style={getRandPattern()}>
+		<div
+			className="credit_card_container select-none pointer-events-none"
+			style={getRandPattern()}
+		>
 			<h1 className="bank_name">{bank}</h1>
 			<img className="chip_illust" src={Chip} alt="Chip" />
 			<p className="card_number">

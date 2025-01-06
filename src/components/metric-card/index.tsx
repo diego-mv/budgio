@@ -2,6 +2,7 @@ import React from 'react'
 import { MetricCardProps } from './types'
 import { Card, Col, Row, Skeleton } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useTranslation } from 'react-i18next'
 
 const MetricCard: React.FC<MetricCardProps> = ({
 	title,
@@ -13,10 +14,21 @@ const MetricCard: React.FC<MetricCardProps> = ({
 	money = false,
 	colors = false
 }) => {
+	const { i18n } = useTranslation()
 	const classColor =
 		Number.parseFloat(value.toString()) && Number(value) <= 0
 			? 'text-red-700'
 			: 'text-green-700'
+
+	const formatMoney = () => {
+		try {
+			return new Intl.NumberFormat(
+				i18n.language === 'en' ? 'en-US' : 'es-ES'
+			).format(Number(value))
+		} catch (_) {
+			return value
+		}
+	}
 
 	return (
 		<Card className="shadow-xl border-1 border-gray-200" style={style}>
@@ -47,7 +59,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
 					) : (
 						<>
 							{money && '$'}
-							{value}
+							{money ? formatMoney() : value}
 						</>
 					)}
 				</Col>
