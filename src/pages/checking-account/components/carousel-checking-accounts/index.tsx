@@ -18,6 +18,7 @@ const CarouselCheckingAccounts: React.FC<CarouselCheckingAccountProps> = ({
 					bank={account.name}
 					color={account.color}
 					name={user?.name || 'User'}
+					type="debit"
 				/>
 			))}
 		</Carousel>

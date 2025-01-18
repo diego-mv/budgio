@@ -39,21 +39,9 @@ const ROUTES: RouteList[] = [
 		type: 'private'
 	},
 	{
-		Component: <Pages.CheckingAccount.CreateCheckingAccount />,
-		name: 'create-checking-accounts',
-		path: '/checking-checking/create',
-		type: 'private'
-	},
-	{
 		Component: <Pages.Expense.MyExpenses />,
 		name: 'expenses',
 		path: '/expenses',
-		type: 'private'
-	},
-	{
-		Component: <Pages.Expense.CreateExpense />,
-		name: 'create-expenses',
-		path: '/expenses/create',
 		type: 'private'
 	}
 ]

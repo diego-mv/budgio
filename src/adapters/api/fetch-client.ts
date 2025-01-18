@@ -6,6 +6,7 @@ export interface ApiClient {
 	post<T>(url: string, token: string, data: object): Promise<T>
 	put<T>(url: string, token: string, data: object): Promise<T>
 	delete(url: string, token: string): Promise<void>
+	uploadFormData<T>(url: string, token: string, formData: FormData): Promise<T>
 }
 
 const apiClient: ApiClient = {
@@ -36,10 +37,18 @@ const apiClient: ApiClient = {
 		return handleResponse<T>(response)
 	},
 	delete: async (url: string, token: string): Promise<void> => {
-		const response = await fetch(`${CONSTANTS.API_URL}${url}`, {
+		await fetch(`${CONSTANTS.API_URL}${url}`, {
 			method: 'DELETE',
 			headers: getHeaders(token)
 		})
+	},
+	uploadFormData: async <T>(url: string, token: string, formData: FormData) => {
+		const response = await fetch(`${CONSTANTS.API_URL}${url}`, {
+			method: 'POST',
+			headers: { Authorization: `Bearer ${token}` },
+			body: formData
+		})
+		return handleResponse<T>(response)
 	}
 }
 
@@ -58,6 +67,7 @@ const handleResponse = async <T>(response: Response): Promise<T> => {
 		}
 		throw new Error(`HTTP Error: ${response.status}`)
 	}
+	if (response.status === 204) return {} as T
 	return response.json()
 }
 

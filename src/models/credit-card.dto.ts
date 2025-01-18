@@ -20,5 +20,10 @@ export class CreditCardImportDto {
 	installmentAmount: number
 }
 
-export class CreateCreditCardDto {}
+export class CreateCreditCardDto {
+	creditLimit: number
+	dueDate: Date
+	name: string
+	color: string
+}
 export class UpdateCreditCardDto {}

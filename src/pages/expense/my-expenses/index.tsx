@@ -31,7 +31,7 @@ const MyExpenses = () => {
 	const { showSuccess, showError } = useAlertContext()
 
 	const rowSelection: TableProps<ExpenseTable>['rowSelection'] = {
-		onChange: (selectedRowKeys: React.Key[], selectedRows: ExpenseTable[]) => {
+		onChange: (_: React.Key[], selectedRows: ExpenseTable[]) => {
 			setSelectedRowKeys(selectedRows.map((row) => row.id))
 		},
 		preserveSelectedRowKeys: false

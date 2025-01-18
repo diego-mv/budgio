@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import {
+	CartesianGrid,
+	Line,
+	LineChart,
+	ResponsiveContainer,
+	Tooltip,
+	XAxis,
+	YAxis
+} from 'recharts'
 import { useAlertContext } from '../../../../contexts/alert/AlertContext'
 import useHistoryCheckingAccountClient from '../../../../hook/useHistoryCheckingAccountClient'
-import { Utils } from '../../../../utils'
-import { HistoryBalanceProps } from './types'
-import {
-	LineChart,
-	Line,
-	ResponsiveContainer,
-	CartesianGrid,
-	XAxis,
-	YAxis,
-	Legend,
-	Dot,
-	Tooltip
-} from 'recharts'
 import { LineChartData } from '../../../../models'
-import { useTranslation } from 'react-i18next'
+import { Utils } from '../../../../utils'
 import HistoryTooltipChart from '../tooltip-history'
+import { HistoryBalanceProps } from './types'
 
 const HistoryBalance: React.FC<HistoryBalanceProps> = ({
 	checkingAccountId,

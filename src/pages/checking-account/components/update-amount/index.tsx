@@ -1,21 +1,18 @@
-import { Form, Input, Modal, Popconfirm, Radio, RadioChangeEvent } from 'antd'
-import { useTranslation } from 'react-i18next'
-import CustomButton from '../../../../components/button'
-import CustomInput from '../../../../components/input'
-import { useAlertContext } from '../../../../contexts/alert/AlertContext'
-import useCheckingAccountClient from '../../../../hook/useCheckingAccount'
-import { UpdateAmountProps, UpdateBalanceForm } from './types'
-import { useEffect, useState } from 'react'
-import { UpdateBalanceCheckingAccountDto } from '../../../../models/checking-account.dto'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
 	faArrowTrendDown,
 	faArrowTrendUp,
-	faBalanceScale,
 	faMoneyBillTransfer
 } from '@fortawesome/free-solid-svg-icons'
-import { set } from 'date-fns'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Form, Input, Modal, Popconfirm, Radio, RadioChangeEvent } from 'antd'
+import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import CustomButton from '../../../../components/button'
 import CustomInputNumber from '../../../../components/input-number'
+import { useAlertContext } from '../../../../contexts/alert/AlertContext'
+import useCheckingAccountClient from '../../../../hook/useCheckingAccount'
+import { UpdateBalanceCheckingAccountDto } from '../../../../models/checking-account.dto'
+import { UpdateAmountProps, UpdateBalanceForm } from './types'
 
 const UpdateAmountCheckingAccount: React.FC<UpdateAmountProps> = ({
 	checkingAccountId,

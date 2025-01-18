@@ -4,7 +4,7 @@ const HistoryTooltipChart: React.FC<{
 	active?: any
 	payload?: any
 	label?: any
-}> = ({ active, label, payload }) => {
+}> = ({ label, payload }) => {
 	const { t } = useTranslation()
 	const value = payload[0]?.payload?.value || 0
 	const description = payload[0]?.payload?.data?.description || ''

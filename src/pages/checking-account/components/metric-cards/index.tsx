@@ -15,7 +15,6 @@ import { MetricCardsCheckingAccountProps } from './types'
 
 const MetricCardsCheckingAccount: React.FC<MetricCardsCheckingAccountProps> = ({
 	checkingAccountId,
-	onLoading,
 	balance,
 	loadingCheckingAccount
 }) => {

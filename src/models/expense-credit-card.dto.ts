@@ -12,5 +12,13 @@ export class ExpenseCreditCardDto {
 	updatedAt: Date | null
 }
 
-export class CreateExpenseCreditCardDto {}
+export class CreateExpenseCreditCardDto {
+	creditCardId: string
+	name: string
+	issueDate: Date
+	totalInstallments: number
+	installmentAmount: number
+	totalCost: number
+}
+
 export class UpdateExpenseCreditCardDto {}

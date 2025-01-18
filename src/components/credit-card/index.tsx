@@ -3,7 +3,12 @@ import { CreditCardProps } from './types'
 import './index.css'
 import Chip from '../../assets/images/credit-card-chip.svg'
 
-const CreditCard: React.FC<CreditCardProps> = ({ name, bank, color }) => {
+const CreditCard: React.FC<CreditCardProps> = ({
+	name,
+	bank,
+	color,
+	type = 'debit'
+}) => {
 	const hexColor = `#${color}`
 	const hexToRgba = (hex: string, alpha: number) => {
 		const r = parseInt(hex.slice(1, 3), 16)
@@ -48,7 +53,7 @@ const CreditCard: React.FC<CreditCardProps> = ({ name, bank, color }) => {
 				))}
 			</p>
 			<p className="username">{name}</p>
-			<span className="type_card">Type</span>
+			<span className="type_card">{type || 'Type'}</span>
 		</div>
 	)
 }
