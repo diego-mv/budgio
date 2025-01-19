@@ -16,8 +16,8 @@ const Layout = () => {
 	} = theme.useToken()
 
 	return (
-		<LayoutAnt style={{ minHeight: '100vh' }}>
-			{isAuthenticated && <Sidebar />}
+		<LayoutAnt style={{ minHeight: '100vh', minWidth: '430px' }}>
+			{/* {isAuthenticated && <Sidebar />} */}
 			<LayoutAnt>
 				<Header />
 

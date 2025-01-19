@@ -106,7 +106,7 @@ const UpdateAmountCheckingAccount: React.FC<UpdateAmountProps> = ({
 	}
 
 	return (
-		<Modal open={open} footer={null} onCancel={onClose}>
+		<Modal open={open} footer={null} onCancel={onClose} style={{ top: 20 }}>
 			{open && (
 				<>
 					<h1 className="text-xl font-bold mt-4">
