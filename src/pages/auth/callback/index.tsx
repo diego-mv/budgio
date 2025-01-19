@@ -1,14 +1,12 @@
 import { jwtDecode } from 'jwt-decode'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Cookies from 'universal-cookie'
 import { UserDto } from '../../../models/user.dto'
 import { useAuthStore } from '../../../stores/auth'
 
 const Callback = () => {
 	const { login } = useAuthStore()
 	const navigate = useNavigate()
-	const cookies = new Cookies()
 
 	useEffect(() => {
 		const handleCallback = async () => {
