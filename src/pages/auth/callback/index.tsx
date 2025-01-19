@@ -11,16 +11,15 @@ const Callback = () => {
 	useEffect(() => {
 		const handleCallback = async () => {
 			const urlParams = new URLSearchParams(window.location.search)
-			const accessToken = urlParams.get('access_token')
-			const refreshToken = urlParams.get('refresh_token')
+			const accessToken = urlParams.getAll('access_token')[0]
+			const refreshToken = urlParams.getAll('refresh_token')[0]
 
 			if (accessToken && refreshToken) {
 				try {
-					const decodedToken: any = jwtDecode(accessToken)
-					const user = decodedToken.user as UserDto
+					const decodedToken: UserDto = jwtDecode(accessToken)
 
-					if (user) {
-						login(user, accessToken, refreshToken)
+					if (decodedToken) {
+						login(decodedToken, accessToken, refreshToken)
 						navigate('/')
 					} else {
 						throw new Error(
@@ -44,7 +43,7 @@ const Callback = () => {
 		}
 
 		handleCallback()
-	}, [login, navigate])
+	}, [navigate, login])
 
 	return <div>Loading...</div>
 }

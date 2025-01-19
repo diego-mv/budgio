@@ -1,12 +1,11 @@
 import { Card, Col, Row } from 'antd'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import ManIllustration from '../../../assets/images/illustration.svg'
 import { useAuthStore } from '../../../stores/auth'
-import { Utils } from '../../../utils'
 import FormLogin from '../components/form-login'
 import SocialNetworkLogin from '../components/social-network-login'
-import { useTranslation } from 'react-i18next'
 
 const Login = () => {
 	const { isAuthenticated } = useAuthStore()
@@ -15,11 +14,7 @@ const Login = () => {
 
 	useEffect(() => {
 		if (isAuthenticated) {
-			const redirectUrl = Utils.LocalStorage.getUrlRedirect()
-			if (redirectUrl) {
-				Utils.LocalStorage.removeUrlRedirect()
-				navigate(redirectUrl)
-			}
+			navigate('/')
 		}
 	}, [isAuthenticated, navigate])
 
