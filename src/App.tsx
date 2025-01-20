@@ -1,6 +1,6 @@
 import { ConfigProvider } from 'antd'
 import { BrowserRouter } from 'react-router-dom'
-import Layout from './pages/layout'
+import LayoutApp from './pages/layout'
 import { AlertProvider } from './contexts/alert/AlertContext'
 
 function App() {
@@ -51,7 +51,7 @@ function App() {
 		>
 			<BrowserRouter>
 				<AlertProvider>
-					<Layout />
+					<LayoutApp />
 				</AlertProvider>
 			</BrowserRouter>
 		</ConfigProvider>

@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import ManIllustration from '../../../assets/images/illustration.svg'
 import { useAuthStore } from '../../../stores/auth'
-import FormLogin from '../components/form-login'
 import SocialNetworkLogin from '../components/social-network-login'
 
 const Login = () => {
@@ -22,21 +21,23 @@ const Login = () => {
 		<div className="h-full w-auto m-auto" style={{ maxWidth: '1700px' }}>
 			<Card>
 				<Row gutter={[16, 16]}>
-					<Col span={10}>
+					<Col xs={0} md={12} lg={12}>
 						<img
-							className="rounded-3xl m-auto"
+							className="rounded-3xl m-auto w-full"
 							src={ManIllustration}
 							style={{ maxWidth: '650px' }}
 						/>
 					</Col>
 					<Col
-						span={14}
+						xs={24}
+						md={12}
+						lg={12}
 						className="flex justify-center align-middle items-center"
 					>
-						<div className="w-full px-32">
+						<div className="w-full md:px-14 lg:px-32">
 							<h1 className="text-2xl font-bold mb-4">{t('login.title')}</h1>
 							<p className="font-semibold mb-4">{t('login.message')}</p>
-							<FormLogin />
+							{/* <FormLogin /> */}
 							<div className="flex items-center justify-center my-4">
 								<div className="flex-1 border-t border-gray-300"></div>
 								<span className="mx-4 text-sm font-medium text-gray-500">

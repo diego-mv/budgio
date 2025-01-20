@@ -1,47 +1,94 @@
-import { Layout as LayoutAnt, theme } from 'antd'
-import { Content, Footer } from 'antd/es/layout/layout'
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Layout, Menu } from 'antd'
+import { Content } from 'antd/es/layout/layout'
+import Sider from 'antd/es/layout/Sider'
+import { MenuItemType } from 'antd/es/menu/interface'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import Header from '../../components/header'
-import Sidebar from '../../components/sidebar'
+import { useNavigate } from 'react-router-dom'
 import Navigation from '../../routes'
 import { useAuthStore } from '../../stores/auth'
-import './index.css'
+import HeaderApp from './components/header'
+import { getSiderItems } from './constants'
 
-const Layout = () => {
-	const { isAuthenticated } = useAuthStore()
+const LayoutApp = () => {
+	const { isAuthenticated, logout } = useAuthStore()
+	const [collapsed, setCollapsed] = useState(true)
 	const { t } = useTranslation()
+	const navigate = useNavigate()
 
-	const {
-		token: { colorBgContainer, borderRadiusLG }
-	} = theme.useToken()
+	const toggleSidebar = () => {
+		setCollapsed(!collapsed)
+	}
+
+	const handleLogout = () => {
+		setCollapsed(true)
+		logout()
+		navigate('/')
+	}
+
+	const siderItems = useMemo(
+		(): MenuItemType[] =>
+			getSiderItems({
+				t,
+				navigate
+			}),
+		[isAuthenticated]
+	)
 
 	return (
-		<LayoutAnt style={{ minHeight: '100vh', minWidth: '430px' }}>
-			{/* {isAuthenticated && <Sidebar />} */}
-			<LayoutAnt>
-				<Header />
-
-				<Content style={{ margin: '24px 16px 0' }}>
-					<div
-						style={{
-							padding: 24,
-							minHeight: 360,
-							background: colorBgContainer,
-							borderRadius: borderRadiusLG
-						}}
-					>
-						<Navigation />
-					</div>
+		<Layout
+			className="min-h-screen"
+			style={{
+				height: '100vh',
+				minHeight: '100vh'
+			}}
+		>
+			{isAuthenticated && (
+				<Sider
+					collapsible
+					trigger={null}
+					collapsed={collapsed}
+					theme="dark"
+					className={`fixed transition-all duration-300 z-50 ${
+						collapsed ? 'hidden' : 'block w-64'
+					}`}
+					style={{
+						height: '100vh',
+						minHeight: '100vh'
+					}}
+				>
+					<div className="text-white p-4">Logo</div>
+					<Menu
+						theme="dark"
+						mode="inline"
+						selectable={false}
+						items={siderItems}
+					/>
+					<Menu
+						className="absolute bottom-0"
+						theme="dark"
+						mode="inline"
+						items={[
+							{
+								label: t('general.logout'),
+								key: 'logout',
+								icon: <FontAwesomeIcon icon={faRightFromBracket} />,
+								onClick: handleLogout
+							}
+						]}
+					/>
+				</Sider>
+			)}
+			<Layout>
+				<HeaderApp toggleSidebar={toggleSidebar} sidebarCollapsed={collapsed} />
+				<Content className={`p-8 ml-0 ${collapsed ? '' : 'md:ml-52'}`}>
+					<Navigation />
 				</Content>
-				<Footer className="align-middle text-center text-gray-500">
-					<span className="font-bold">Budgio</span>{' '}
-					<span className="font-semibold">
-						©{new Date().getFullYear()} {t('footer.footerText')}
-					</span>
-				</Footer>
-			</LayoutAnt>
-		</LayoutAnt>
+			</Layout>
+		</Layout>
 	)
 }
 
-export default Layout
+export default LayoutApp

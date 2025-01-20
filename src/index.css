@@ -2,3 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind variants;
+
+
+.masked-text {
+    font-weight: bold;
+    color: transparent;
+    background-image: url('./assets/images/back-text.png'); 
+    background-size: 200%;
+    background-position: 0 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-background 5s infinite alternate linear;
+}
+
+@keyframes animate-background {
+    0% {
+        background-position: 0 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}

@@ -1,6 +1,6 @@
 import { Button } from 'antd'
 import { CONSTANTS } from '../../../../constants'
-import GithubLogo from '../../../../assets/logos/github_white.svg'
+import GithubLogo from '../../../../assets/logos/github.svg'
 import GoogleLogo from '../../../../assets/logos/google.svg'
 
 const SocialNetworkLogin = () => {
