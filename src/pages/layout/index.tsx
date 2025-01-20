@@ -1,7 +1,7 @@
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Layout, Menu } from 'antd'
-import { Content } from 'antd/es/layout/layout'
+import { Content, Footer } from 'antd/es/layout/layout'
 import Sider from 'antd/es/layout/Sider'
 import { MenuItemType } from 'antd/es/menu/interface'
 import { useMemo, useState } from 'react'
@@ -93,6 +93,12 @@ const LayoutApp = () => {
 				<HeaderApp toggleSidebar={toggleSidebar} sidebarCollapsed={collapsed} />
 				<Content className={`p-8 ml-0 ${collapsed ? '' : 'md:ml-52'}`}>
 					<Navigation />
+					<Footer className="align-middle text-center text-gray-500">
+						<span className="font-bold">Budgio</span>{' '}
+						<span className="font-semibold">
+							©{new Date().getFullYear()} {t('footer.footerText')}
+						</span>
+					</Footer>
 				</Content>
 			</Layout>
 		</Layout>
