@@ -91,9 +91,13 @@ const LayoutApp = () => {
 			)}
 			<Layout>
 				<HeaderApp toggleSidebar={toggleSidebar} sidebarCollapsed={collapsed} />
-				<Content className={`p-8 ml-0 ${collapsed ? '' : 'md:ml-52'}`}>
-					<Navigation />
-					<Footer className="align-middle text-center text-gray-500">
+				<Content>
+					<div
+						className={`min-h-screen p-8 ml-0 ${collapsed ? '' : 'md:ml-52'}`}
+					>
+						<Navigation />
+					</div>
+					<Footer className="align-middle text-center text-gray-500 w-full">
 						<span className="font-bold">Budgio</span>{' '}
 						<span className="font-semibold">
 							©{new Date().getFullYear()} {t('footer.footerText')}
