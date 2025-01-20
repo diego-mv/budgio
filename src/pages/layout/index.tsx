@@ -1,4 +1,4 @@
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Layout, Menu } from 'antd'
 import { Content, Footer } from 'antd/es/layout/layout'
@@ -14,10 +14,15 @@ import HeaderApp from './components/header'
 import { getSiderItems } from './constants'
 
 const LayoutApp = () => {
-	const { isAuthenticated, logout } = useAuthStore()
+	const { isAuthenticated, logout, user } = useAuthStore()
 	const [collapsed, setCollapsed] = useState(true)
 	const { t } = useTranslation()
 	const navigate = useNavigate()
+
+	const firstname = useMemo(() => {
+		const nameSplit = user?.name?.split(' ') || []
+		return nameSplit[0] || 'User'
+	}, [user])
 
 	const toggleSidebar = () => {
 		setCollapsed(!collapsed)
@@ -75,7 +80,7 @@ const LayoutApp = () => {
 						items={siderItems}
 					/>
 					<Menu
-						className="absolute bottom-0"
+						className="absolute bottom-5"
 						theme="dark"
 						mode="inline"
 						items={[
@@ -84,6 +89,12 @@ const LayoutApp = () => {
 								key: 'logout',
 								icon: <FontAwesomeIcon icon={faRightFromBracket} />,
 								onClick: handleLogout
+							},
+							{
+								disabled: true,
+								label: firstname,
+								key: 'username',
+								icon: <FontAwesomeIcon icon={faUser} />
 							}
 						]}
 					/>

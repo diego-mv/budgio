@@ -38,16 +38,27 @@ const HeaderApp: React.FC<{
 		navigate('/auth/login')
 	}
 
+	const handleHome = () => {
+		navigate('/')
+	}
+
 	return (
 		<Header
 			className={`bg-white shadow-md flex items-center p-4 transition-all duration-300 ${isAuthenticated ? 'justify-between' : 'justify-end'} ${sidebarCollapsed ? 'ml-0' : 'ml-52'}`}
 		>
-			{isAuthenticated && (
+			{isAuthenticated ? (
 				<Button
 					className="border-[0.5px] border-opacity-30"
 					icon={<FontAwesomeIcon icon={faBars} />}
 					onClick={toggleSidebar}
 				/>
+			) : (
+				<Button
+					className="border-0 ml-0 mr-auto font-semibold"
+					onClick={handleHome}
+				>
+					{t('general.home')}
+				</Button>
 			)}
 			<div className="flex items-center">
 				<Dropdown menu={{ items: languageItems, onClick: handleMenuClick }}>

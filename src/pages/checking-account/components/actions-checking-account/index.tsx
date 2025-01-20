@@ -29,23 +29,23 @@ const ActionsCheckingAccount: React.FC<ActionsCheckingAccountProps> = ({
 				className="flex sm:justify-end justify-center"
 			>
 				<CustomButton
-					className="rounded-xl font-bold shadow-sm ml-2 mx-1"
+					className="rounded-xl font-bold shadow-sm mx-0 sm:w-auto w-full"
 					size="large"
 					icon={<FontAwesomeIcon icon={faScaleBalanced} />}
 					onClick={handleOpenUpdateBalance}
 				>
 					{t('checkingAccount.updateBalance')}
-				</CustomButton>{' '}
-			</Col>{' '}
+				</CustomButton>
+			</Col>
 			<Col
 				xs={24}
 				md={12}
 				lg={12}
 				span={12}
-				className="flex sm:justify-start justify-center"
+				className="flex sm:justify-start justify-center "
 			>
 				<CustomButton
-					className="rounded-xl font-bold shadow-sm mx-1"
+					className="rounded-xl font-bold shadow-sm mx-0 sm:w-auto w-full"
 					size="large"
 					icon={<FontAwesomeIcon icon={faPenToSquare} />}
 					onClick={handleOpenUpdateCheckingAccount}
