@@ -15,6 +15,7 @@ import CustomButton from '../../../../components/button'
 import { useAlertContext } from '../../../../contexts/alert/AlertContext'
 import useCreditCardClient from '../../../../hook/useCreditCardClient'
 import { ActionsCreditCardProps } from './types'
+import './index.css'
 
 const ActionsCreditCard: React.FC<ActionsCreditCardProps> = ({
 	creditCardId,
@@ -55,18 +56,33 @@ const ActionsCreditCard: React.FC<ActionsCreditCardProps> = ({
 	}
 
 	return (
-		<Row className="w-full flex justify-between items-center">
-			<Col span={24} className="flex justify-center">
+		<Row gutter={[16, 16]} className="w-full flex justify-between items-center">
+			<Col
+				xs={24}
+				md={12}
+				lg={12}
+				span={12}
+				className="flex sm:justify-end justify-center"
+			>
 				<CustomButton
-					className="rounded-xl font-bold shadow-sm ml-2 mx-1"
+					className="rounded-xl font-bold shadow-sm mx-0 sm:w-auto w-full"
 					size="large"
 					icon={<FontAwesomeIcon icon={faFileInvoice} />}
 					onClick={handleOpenAddBuy}
 				>
 					{t('creditCard.addBuy')}
 				</CustomButton>
+			</Col>
+			<Col
+				xs={24}
+				md={12}
+				lg={12}
+				span={12}
+				className="flex sm:justify-start justify-center"
+			>
 				<Upload
-					className="rounded-xl font-bold shadow-sm ml-2 mx-1"
+					className="upload-expense-card rounded-xl font-bold shadow-sm mx-0 sm:w-auto w-full"
+					rootClassName="rounded-xl font-bold shadow-sm mx-0 sm:w-auto w-full"
 					accept=".xlsx"
 					customRequest={uploadRequest}
 					onChange={handleChange}
@@ -74,6 +90,7 @@ const ActionsCreditCard: React.FC<ActionsCreditCardProps> = ({
 					disabled={uploading}
 				>
 					<CustomButton
+						className="w-full"
 						size="large"
 						icon={<FontAwesomeIcon icon={faFileImport} />}
 					>
@@ -84,10 +101,8 @@ const ActionsCreditCard: React.FC<ActionsCreditCardProps> = ({
 			<Col
 				span={24}
 				className="
-                    xs:mt-4 xs:flex xs:justify-center
-                    sm:mt-2 sm:flex sm:justify-center
-                    md:mt-2 md:flex md:justify-center
-                    lg:absolute lg:right-10 xl:absolute xl:right-10"
+xs:mt-4 sm:mt-2 md:mt-2 flex justify-center
+lg:absolute lg:right-10 xl:absolute xl:right-10"
 			>
 				<CustomButton
 					className="rounded-xl font-bold shadow-sm mx-1"

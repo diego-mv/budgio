@@ -1,6 +1,7 @@
 import { Spin } from 'antd'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import EmptyCards from '../../../components/empty-card'
 import { useAlertContext } from '../../../contexts/alert/AlertContext'
 import useCheckingAccountClient from '../../../hook/useCheckingAccount'
 import useModal from '../../../hook/useModal'
@@ -8,7 +9,6 @@ import { CheckingAccountDto } from '../../../models/checking-account.dto'
 import ActionsCheckingAccount from '../components/actions-checking-account'
 import CarouselCheckingAccounts from '../components/carousel-checking-accounts'
 import DetailsCheckingAccount from '../components/details-checking-account'
-import EmptyCheckingAccounts from '../components/empty-checking-accounts'
 import ModalCreateCheckingAccount from '../components/modal-create'
 import UpdateAmountCheckingAccount from '../components/update-amount'
 import UpdateCheckingAccount from '../components/update-checking-account'
@@ -154,7 +154,7 @@ const MyCheckingAccounts = () => {
 						</div>
 					</>
 				) : (
-					<EmptyCheckingAccounts onOpenCreate={handleOpenCreate} />
+					<EmptyCards onOpenCreate={handleOpenCreate} />
 				)}
 			</div>
 		</div>

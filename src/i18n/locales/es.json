@@ -25,7 +25,10 @@
         "expense": "Gasto",
         "changeConfirm": "Cambiar de todas formas",
         "changeConfirmSubtitle": "Esta acción no se puede deshacer", 
-        "inWork": "Estamos trabajando en esta sección, por favor revisa mas tarde..."
+        "inWork": "Estamos trabajando en esta sección, por favor revisa mas tarde...",
+        "emptyTitle": "¡Crea tu primera tarjeta!",
+        "emptySubtitle":"Comienza a registrar tus ingresos, gastos y lleva un control completo de tus finanzas.",
+        "createCard": "Crear tarjeta"
     },
     "login":{
         "title": "Iniciar sesión",
@@ -82,6 +85,7 @@
         "confirmUpdateBalance": "¿Estás seguro que deseas actualizar el balance de la cuenta por {{amount}}?"
     },
     "creditCard": {
+        "title": "Tarjetas de crédito",
         "addBuy": "Ingresar compra",
         "deleteConfirm":"¿Estás seguro de eliminar la cuenta?",
         "creditLimit": "Límite de crédito",
@@ -95,8 +99,13 @@
         "issueDate": "Fecha de emisión",
         "totalInstallments":  "Total de cuotas",
         "totalCost": "Monto total",
-        "installmentAmount": "Monto de la cuota"
+        "installmentAmount": "Monto de la cuota",
+        "addNewCard": "Añadir nueva tarjeta",
+        "emptyTitle": "¡Crea tu primera tarjeta de crédito!",
+        "emptySubtitle":"Comienza a registrar tus ingresos, gastos y lleva un control completo de tus finanzas.",
+        "createCard": "Crear tarjeta"
     },
+
     "footer": {
         "footerText": "Proyecto de prueba. Al iniciar sesion se guarda nombre y correo electronico"
     },

@@ -1,12 +1,13 @@
 import { AggregationColor } from 'antd/es/color-picker/color'
+import { CreditCardDto } from '../../../../models/credit-card.dto'
 
 export interface AddCreditCardProps {
-	handleAddCreditCard: () => void
+	handleAddCreditCard: (card: CreditCardDto) => void
 }
 
 export interface AddCreditCardForm {
 	name: string
 	dueDate: Date
-	limit: number
+	creditLimit: number
 	color: AggregationColor
 }

@@ -11,7 +11,7 @@ import { useAlertContext } from '../../../../contexts/alert/AlertContext'
 import { CreateCreditCardDto } from '../../../../models/credit-card.dto'
 
 const FormAddCreditCard: React.FC<AddCreditCardProps> = ({
-	handleAddCreditCard: handleAddBuy
+	handleAddCreditCard
 }) => {
 	const { t } = useTranslation()
 	const { create } = useCreditCardClient()
@@ -24,13 +24,13 @@ const FormAddCreditCard: React.FC<AddCreditCardProps> = ({
 			const createDto: CreateCreditCardDto = {
 				name: values.name,
 				color: values.color?.toHex(),
-				creditLimit: values.limit,
+				creditLimit: values.creditLimit,
 				dueDate: values.dueDate
 			}
 
-			await create(createDto)
+			const newCard = await create(createDto)
 			showSuccess(t('creditCard.buyCreated'))
-			handleAddBuy()
+			handleAddCreditCard(newCard)
 		} catch (error) {
 			showError(t('errors.onCreate'))
 		} finally {
