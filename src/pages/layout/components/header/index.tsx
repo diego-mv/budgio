@@ -29,7 +29,7 @@ const HeaderApp: React.FC<{
 		}
 	]
 
-	const handleMenuClick: MenuProps['onClick'] = (e: any) => {
+	const handleMenuClick = (e: any) => {
 		const language = e.key
 		changeLanguage(language)
 	}

@@ -21,7 +21,7 @@ const ROUTES: RouteList[] = [
 		type: 'public'
 	},
 	{
-		Component: <Pages.CreditCard.MyCreditCards />,
+		Component: <Pages.InWorkPage />,
 		name: 'credit-cards',
 		path: '/credit-cards',
 		type: 'private'

@@ -24,13 +24,26 @@
         "income": "Ingreso",
         "expense": "Gasto",
         "changeConfirm": "Cambiar de todas formas",
-        "changeConfirmSubtitle": "Esta acción no se puede deshacer"
+        "changeConfirmSubtitle": "Esta acción no se puede deshacer", 
+        "inWork": "Estamos trabajando en esta sección, por favor revisa mas tarde..."
     },
     "login":{
         "title": "Iniciar sesión",
         "message": "Entra en tu cuenta para acceder a todas las funcionalidades de la aplicación",
         "canAccesWith": "Puedes acceder con:",
         "button": "Iniciar sesión"
+    },
+    "home": {
+        "title": "Gestiona tus gastos, optimiza tu dinero, vive tranquilo.",
+        "subtitle": "Organiza, supervisa y optimiza tus finanzas de forma sencilla. Ingresa tus gastos, analiza el resumen de tus tarjetas de crédito y débito, y mantén un control completo de tu situación financiera, todo en un solo lugar.",
+        "invite": "¡Empecemos!",
+        "card1Title": "Gestiona tus Gastos de Forma Fácil",
+        "card1Description": "Nuestra app te permite registrar rápidamente tus gastos de tarjetas de crédito y débito, con un diseño intuitivo para que puedas visualizar tu saldo y administrar tus finanzas sin complicaciones.",
+        "card2Title": "Todo en un solo lugar",
+        "card2Description": "Con nuestro dashboard interactivo, podrás visualizar en tiempo real tus gastos, balances y ahorros, lo que te ayudará a tomar decisiones informadas para optimizar tu economía.",
+		"card3Title": "Nos tomamos muy en serio la seguridad de tus datos",
+        "card3Description": "Nunca te pediremos datos de tus tarjetas y solo manejamos información básica, garantizando tu privacidad en todo momento"
+        
     },
     "expenses":{
         "title": "Gastos",

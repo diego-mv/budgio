@@ -1,3 +1,4 @@
+import { Spin } from 'antd'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useAlertContext } from '../../../contexts/alert/AlertContext'
@@ -102,7 +103,11 @@ const MyCheckingAccounts = () => {
 	}
 
 	if (loading) {
-		return <div>Loading...</div>
+		return (
+			<div className="w-full flex justify-center items-center h-full">
+				<Spin size="large"></Spin>
+			</div>
+		)
 	}
 
 	return (

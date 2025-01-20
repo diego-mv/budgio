@@ -7,6 +7,7 @@ import { MenuItemType } from 'antd/es/menu/interface'
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import LogoApp from '../../assets/logos/logo.png'
 import Navigation from '../../routes'
 import { useAuthStore } from '../../stores/auth'
 import HeaderApp from './components/header'
@@ -28,13 +29,18 @@ const LayoutApp = () => {
 		navigate('/')
 	}
 
+	const navigateSider = (route: string) => {
+		navigate(route)
+		setCollapsed(true)
+	}
+
 	const siderItems = useMemo(
 		(): MenuItemType[] =>
 			getSiderItems({
 				t,
-				navigate
+				navigate: navigateSider
 			}),
-		[isAuthenticated]
+		[isAuthenticated, t]
 	)
 
 	return (
@@ -59,7 +65,9 @@ const LayoutApp = () => {
 						minHeight: '100vh'
 					}}
 				>
-					<div className="text-white p-4">Logo</div>
+					<div className="text-white p-4 m-auto">
+						<img src={LogoApp} width={70} className="m-auto" />
+					</div>
 					<Menu
 						theme="dark"
 						mode="inline"

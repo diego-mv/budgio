@@ -62,7 +62,7 @@ const MyExpenses = () => {
 	}
 
 	return (
-		<Card>
+		<Card className="w-full max-w-full">
 			<ModalCreateExpense
 				isOpen={isCreateModalOpen}
 				onClose={handleCloseCreate}
@@ -91,6 +91,7 @@ const MyExpenses = () => {
 			<hr className="mt-14 mb-6 opacity-50 rounded-full" />
 
 			<Table<ExpenseTable>
+				className="overflow-x-scroll"
 				rowSelection={{ type: 'checkbox', ...rowSelection }}
 				columns={getColumns(t)}
 				dataSource={expenses.map(
