@@ -6,3 +6,4 @@ export * from './debit-card.drizzle.schema';
 export * from './debit-transaction.drizzle.schema';
 export * from './monthly-budget.drizzle.schema';
 export * from './user.drizzle.schema';
+export * from './user-token.drizzle.schema';

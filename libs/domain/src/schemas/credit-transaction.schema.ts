@@ -1,5 +1,6 @@
-import { CreditCardSchema } from './credit-card.schema';
 import { z } from 'zod';
+import { CategorySchema } from './category.schema';
+import { CreditCardSchema } from './credit-card.schema';
 
 export const CreditTransactionSchema = z.object({
   id: z.string().uuid(),
@@ -23,6 +24,7 @@ export const CreditTransactionSchema = z.object({
 
 export const CreditTransactionRelSchema = CreditTransactionSchema.extend({
   credit_card: CreditCardSchema,
+  category: CategorySchema,
 });
 
 export const CreateCreditTransactionSchema = CreditTransactionSchema.omit({

@@ -6,3 +6,4 @@ export * from './debit-card.schema';
 export * from './debit-transaction.schema';
 export * from './monthly-budget.schema';
 export * from './user.schema';
+export * from './user-token.schema';

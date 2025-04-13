@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { CategorySchema } from './category.schema';
+import { UserSchema } from './user.schema';
 
 export const MonthlyBudgetSchema = z.object({
   id: z.string().uuid(),
@@ -16,6 +18,11 @@ export const MonthlyBudgetSchema = z.object({
   updated_at: z.coerce.date(),
 });
 
+export const MonthlyBudgetRelSchema = MonthlyBudgetSchema.extend({
+  user: UserSchema,
+  category: CategorySchema,
+});
+
 export const CreateMonthlyBudgetSchema = MonthlyBudgetSchema.omit({
   id: true,
   created_at: true,
@@ -24,5 +31,6 @@ export const CreateMonthlyBudgetSchema = MonthlyBudgetSchema.omit({
 export const PartialMonthlyBudgetSchema = MonthlyBudgetSchema.partial();
 
 export type MonthlyBudget = z.infer<typeof MonthlyBudgetSchema>;
+export type MonthlyBudgetRel = z.infer<typeof MonthlyBudgetRelSchema>;
 export type CreateMonthlyBudget = z.infer<typeof CreateMonthlyBudgetSchema>;
 export type PartialMonthlyBudget = z.infer<typeof PartialMonthlyBudgetSchema>;

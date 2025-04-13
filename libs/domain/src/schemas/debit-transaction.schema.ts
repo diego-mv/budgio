@@ -1,3 +1,5 @@
+import { CategorySchema } from './category.schema';
+import { DebitCardSchema } from './debit-card.schema';
 import { z } from 'zod';
 
 export const DebitTransactionSchema = z.object({
@@ -12,6 +14,11 @@ export const DebitTransactionSchema = z.object({
   created_at: z.coerce.date(),
 });
 
+export const DebitTransactionRelSchema = DebitTransactionSchema.extend({
+  debit_card: DebitCardSchema,
+  category: CategorySchema,
+});
+
 export const CreateDebitTransactionSchema = DebitTransactionSchema.omit({
   id: true,
   created_at: true,
@@ -20,6 +27,7 @@ export const CreateDebitTransactionSchema = DebitTransactionSchema.omit({
 export const PartialDebitTransactionSchema = DebitTransactionSchema.partial();
 
 export type DebitTransaction = z.infer<typeof DebitTransactionSchema>;
+export type DebitTransactionRel = z.infer<typeof DebitTransactionRelSchema>;
 export type CreateDebitTransaction = z.infer<
   typeof CreateDebitTransactionSchema
 >;

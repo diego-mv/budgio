@@ -1,3 +1,5 @@
+import { BankSchema } from './bank.schema';
+import { UserSchema } from './user.schema';
 import { z } from 'zod';
 
 export const DebitCardSchema = z.object({
@@ -13,6 +15,11 @@ export const DebitCardSchema = z.object({
   updated_at: z.coerce.date(),
 });
 
+export const DebitCardRelSchema = DebitCardSchema.extend({
+  user: UserSchema,
+  bank: BankSchema,
+});
+
 export const CreateDebitCardSchema = DebitCardSchema.omit({
   id: true,
   created_at: true,
@@ -22,5 +29,6 @@ export const CreateDebitCardSchema = DebitCardSchema.omit({
 export const PartialDebitCardSchema = DebitCardSchema.partial();
 
 export type DebitCard = z.infer<typeof DebitCardSchema>;
+export type DebitCardRel = z.infer<typeof DebitCardRelSchema>;
 export type CreateDebitCard = z.infer<typeof CreateDebitCardSchema>;
 export type PartialDebitCard = z.infer<typeof PartialDebitCardSchema>;
